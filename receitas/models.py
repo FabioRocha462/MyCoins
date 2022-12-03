@@ -1,5 +1,5 @@
 from django.db import models
-
+from receita_categoria.models import CategoriaReceita
 # Create your models here.
 
 class Receitas(models.Model):
@@ -15,6 +15,6 @@ class Receitas(models.Model):
     )
     criacao = models.DateTimeField(auto_now_add=True)
     atualizacao = models.DateTimeField(auto_now = True)
-
+    categoria = models.ForeignKey(CategoriaReceita, on_delete=models.CASCADE)
     def __str__(self):
         return self.nome

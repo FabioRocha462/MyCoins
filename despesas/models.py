@@ -1,5 +1,5 @@
 from django.db import models
-
+from despesa_categoria.models import CategoriaDespesa
 # Create your models here.
 
 class Despesas(models.Model):
@@ -8,15 +8,16 @@ class Despesas(models.Model):
         ('2', 'eventual'),
     )
 
-    nome = models.CharField(max_length=255)
-    valor  = models.FloatField()
+    name = models.CharField(max_length=255)
+    value  = models.FloatField()
     tipoDespesas = models.CharField(
         max_length=1,
         choices=tipo,
     )
-    criacao = models.DateTimeField(auto_now_add=True)
-    atualizacao = models.DateTimeField(auto_now = True)
+    create = models.DateTimeField(auto_now_add=True)
+    update = models.DateTimeField(auto_now = True)
+    categoria = models.ForeignKey(CategoriaDespesa, on_delete=models.CASCADE)
 
     
     def __str__(self):
-        return self.nome
+        return self.name
