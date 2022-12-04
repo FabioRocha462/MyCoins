@@ -17,6 +17,7 @@ class Despesas(models.Model):
     create = models.DateTimeField(auto_now_add=True)
     update = models.DateTimeField(auto_now = True)
     categoria = models.ForeignKey(CategoriaDespesa, on_delete=models.CASCADE)
+    data = models.DateTimeField(null=True)
 
     
     def __str__(self):

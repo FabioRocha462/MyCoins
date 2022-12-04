@@ -16,5 +16,6 @@ class Receitas(models.Model):
     criacao = models.DateTimeField(auto_now_add=True)
     atualizacao = models.DateTimeField(auto_now = True)
     categoria = models.ForeignKey(CategoriaReceita, on_delete=models.CASCADE)
+    data = models.DateTimeField(null=True)
     def __str__(self):
         return self.nome
