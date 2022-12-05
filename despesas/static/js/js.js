@@ -124,3 +124,75 @@ function receitavsdespesa(url){
 
 
 }
+
+
+function graficos_categoria_despesas(url){
+    fetch(url, {
+        method: 'get',
+    }).then(function(result){
+        return result.json()
+    }).then(function(data){
+        const ctx = document.getElementById('categoriadispesa').getContext('2d');
+        var cores = gera_cor(qtd=12)
+        const myChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: data['categorias'],
+                datasets: [{
+                    label: 'despesas por categoria',
+                    data:data['valores'],
+                    backgroundColor: cores[0],
+                    borderColor: cores[1],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+
+
+    })
+
+
+    
+
+}
+
+
+function graficos_categoria_receitas(url){
+    fetch(url, {
+        method: 'get',
+    }).then(function(result){
+        return result.json()
+    }).then(function(data){
+        const ctx = document.getElementById('categoriareceita').getContext('2d');
+        var cores = gera_cor(qtd=12)
+        const myChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: data['categorias'],
+                datasets: [{
+                    label: 'receitas por categoria',
+                    data:data['valores'],
+                    backgroundColor: cores[0],
+                    borderColor: cores[1],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+
+
+    })
+}

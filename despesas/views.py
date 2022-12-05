@@ -6,6 +6,8 @@ import datetime
 from django.http import JsonResponse
 import requests
 import json
+from despesa_categoria.models import CategoriaDespesa
+from receita_categoria.models import CategoriaReceita
 # Create your views here.
 
 def index(request):
@@ -118,3 +120,39 @@ def receitasvsdespesas(request):
         despesasJson = despesas.json()
         receitasJson = receitas.json()
         return JsonResponse({'receitas':receitasJson['valor mensal'],'despesas':despesasJson['valor mensal'], 'meses':despesasJson['mes']})
+
+def categoriadespesa(request):
+    if request.method == 'GET':
+        categoriadespesa = CategoriaDespesa.objects.all()
+        ano = datetime.date.today().month
+        lista_despesas = []
+        lista_valores = []
+        for i in categoriadespesa:
+            lista_valores.append(0)
+        cont = 0
+        for cd in categoriadespesa:
+            lista_despesas.append(cd.name)
+            despesas = cd.despesas_set.all()
+            if len(despesas) > 0:
+                for d in despesas:
+                    lista_valores[cont] = lista_valores[cont] + d.value
+            cont = cont + 1
+        return JsonResponse({'categorias': lista_despesas,'valores': lista_valores})
+
+def categoriareceita(request):
+    if request.method == 'GET':
+        categoriareceitas = CategoriaReceita.objects.all()
+        ano = datetime.date.today().month
+        lista_receitas = []
+        lista_valores = []
+        for i in categoriareceitas:
+            lista_valores.append(0)
+        cont = 0
+        for cd in categoriareceitas:
+            lista_receitas.append(cd.name)
+            receitas = cd.receitas_set.all()
+            if len(receitas) > 0:
+                for d in receitas:
+                    lista_valores[cont] = lista_valores[cont] + d.valor
+            cont = cont + 1
+        return JsonResponse({'categorias': lista_receitas,'valores': lista_valores})
