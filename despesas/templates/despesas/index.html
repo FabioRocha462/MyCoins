@@ -3,6 +3,7 @@
 {% block content %}
 <main>
 <div class="container">
+  <br>
     <div class="container text-center">
         <div class="row align-items-start">
           <div class="col">
@@ -33,6 +34,12 @@
         </div>
         <canvas id="categoriareceita"  width="250" height="200"> </canvas>
       </div>
+      <div class="col">
+        <div class="form_center">
+        <h4>Lucros</h4>
+        </div>
+        <canvas id="lucros"  width="250" height="200"> </canvas>
+      </div>
     </div>
 </div>
 </main>
@@ -43,6 +50,7 @@
      receitavsdespesa('{% url "receitasvsdespesas" %}')
      graficos_categoria_despesas('{% url "categoriadespesa" %}')
      graficos_categoria_receitas('{% url "categoriareceita" %}')
+     graficos_lucros('{% url "lucros" %}')
     }
  </script>
 {% endblock %}

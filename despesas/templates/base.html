@@ -45,12 +45,39 @@
                   <li><a class="dropdown-item" href="/receitas/all">Suas Receitas</a></li>
                 </ul>
               </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                 Categoria de Despesa
+                </a>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="/categoria_despesa">criar categroia de despesa</a></li>
+                  <li><a class="dropdown-item" href="/categoria_despesa/all">Suas categorias de despesa </a></li>
+                </ul>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                 Categoria de Receita
+                </a>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="/categoria_receita">criar categroia de receita</a></li>
+                  <li><a class="dropdown-item" href="/categoria_receita/all">Suas categorias de receita </a></li>
+                </ul>
+              </li>
             </ul>
           </div>
         </div>
       </nav>
     {% block content %}
     {% endblock %}
+    <footer>
+      <nav class="navbar navbar-light bg-light">
+        <div class="container-fluid">
+          <span class="navbar-text">
+            <span class="sr-only">MyCoins &copy; 2022</span>
+          </span>
+        </div>
+      </nav>
+    </footer>
 <!-- JavaScript Bundle with Popper -->
 
 <script src="{% static 'js/js.js' %}"></script>

@@ -1,3 +1,6 @@
+body{
+    background-color: black;  
+}
 main{
     background-color: black;
     max-height: 1000px;
@@ -14,7 +17,11 @@ main{
 
 main{
     background-color: #333;
+    padding-bottom: 50px;
 }
 
+footer{
+    background-color: #333;
+}
 
 

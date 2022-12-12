@@ -156,3 +156,17 @@ def categoriareceita(request):
                     lista_valores[cont] = lista_valores[cont] + d.valor
             cont = cont + 1
         return JsonResponse({'categorias': lista_receitas,'valores': lista_valores})
+
+def lucros(request):
+    if request.method == "GET":
+        URL_despesas = 'http://localhost:8000/despesasanuais'
+        URL_receitas = 'http://localhost:8000/receitasanuais'
+        receitas = requests.get(URL_receitas)
+        despesas = requests.get(URL_despesas)
+        despesasJson = despesas.json()
+        receitasJson = receitas.json()
+        lucro = []
+        for i in range(len(despesasJson["mes"])):
+            value = receitasJson["valor mensal"][i] - despesasJson["valor mensal"][i]
+            lucro.append(value)
+        return JsonResponse({"lucro":lucro,"meses":despesasJson["mes"]})

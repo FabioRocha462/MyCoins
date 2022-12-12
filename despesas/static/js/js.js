@@ -196,3 +196,34 @@ function graficos_categoria_receitas(url){
 
     })
 }
+
+function graficos_lucros(url){
+    fetch(url, {
+        method:"get"
+    }).then(function(result){
+        return result.json()
+    }).then(function(data){
+        const ctx = document.getElementById('lucros').getContext('2d');
+        var cores = gera_cor(qtd=12)
+        const myChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'] ,
+                datasets: [{
+                    label: 'lucros',
+                    data:data['lucro'],
+                    backgroundColor: cores[0],
+                    borderColor: cores[1],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+    });
+})
+}
