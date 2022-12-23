@@ -1,4 +1,5 @@
-from django.shortcuts import render,redirect
+from django.shortcuts import render,redirect, HttpResponse
+from django.shortcuts import get_object_or_404
 from .models import Receitas
 from .forms import ReceitaSForm
 import datetime
@@ -22,12 +23,14 @@ def allreceitas(request):
     return render(request, 'receitas/receitas.html',{'receitas':receitas})
 
 def delete(request,id):
-    receita = Receitas.objects.get(id=id)
-    receita.delete()
-    return redirect('/')
+    receita = get_object_or_404(Receitas,pk=id)
+    if receita:
+        receita.delete()
+        return redirect('/')
+    return JsonResponse({"msg":"Não encontrado"})
 
 def edit(request,id):
-    receita = Receitas.objects.get(id=id)
+    receita = get_object_or_404(Receitas,pk=id)
     form = ReceitaSForm(instance = receita)
     if request.method == 'GET':
         return render(request, 'receitas/edit.html', {'form':form})
