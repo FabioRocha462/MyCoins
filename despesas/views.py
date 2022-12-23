@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_list_or_404
 from .forms import DespesasForm
 from .models import Despesas
 from receitas.models import Receitas
@@ -29,7 +29,7 @@ def allDespesas(request):
     return render(request, 'despesas/despesas.html',{'despesas':despesas})
 
 def editDespesa(request,id):
-    despesa = Despesas.objects.get(id = id)
+    despesa = get_list_or_404(Despesas,pk=id)
     form = DespesasForm(instance = despesa)
     if request.method == 'GET':
         return render(request,'despesas/edit.html',{'form':form})
@@ -41,7 +41,7 @@ def editDespesa(request,id):
 
 
 def delete(request,id):
-    despesa = Despesas.objects.get(id=id)
+    despesa = get_list_or_404(Despesas,pk=id)
     despesa.delete()
     return redirect('/')
 

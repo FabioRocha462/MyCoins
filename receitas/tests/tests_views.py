@@ -21,3 +21,4 @@ class TesteViews(TestCase):
     def test_receitaDelete(self):
         response = self.client.get(reverse("receita delete", kwargs={"id":1}))
         assert response.status_code == 404
+        
