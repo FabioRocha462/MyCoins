@@ -1,7 +1,17 @@
 from django.test import TestCase
 from django.urls import reverse
 from despesas.models import Despesas
-
+from despesa_categoria.models import CategoriaDespesa
+import datetime
+def create():
+    despesa = Despesas(
+        name = "Teste",
+        value = 1200,
+        tipoDespesas = '1',
+        data = datetime.date.today(),
+        categoria = 1
+    )
+    despesa.save()
 class TestViews(TestCase):
     def test_index(self):
         response = self.client.get(reverse("index"))
@@ -20,8 +30,9 @@ class TestViews(TestCase):
         assert response.status_code == 200
     
     def test_DespesaEditGet(self):
+        create()
         response = self.client.get(reverse("editDespesa", kwargs={"id":1} ))
-        assert response.status_code == 404
+        assert response.status_code == 200
 
     def test_DespesaEditPost(self):
         response = self.client.get(reverse("editDespesa", kwargs={"id":1}))
