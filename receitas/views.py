@@ -23,11 +23,12 @@ def allreceitas(request):
     return render(request, 'receitas/receitas.html',{'receitas':receitas})
 
 def delete(request,id):
-    receita = get_object_or_404(Receitas,pk=id)
-    if receita:
-        receita.delete()
-        return redirect('/')
-    return JsonResponse({"msg":"Não encontrado"})
+    if request.method == "GET":
+        receita = get_object_or_404(Receitas,pk=id)
+        if receita:
+            receita.delete()
+            return redirect('/')
+        return JsonResponse({"msg":"Não encontrado"})
 
 def edit(request,id):
     receita = get_object_or_404(Receitas,pk=id)

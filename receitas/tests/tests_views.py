@@ -15,8 +15,8 @@ class TesteViews(TestCase):
         assert response.status_code == 200
 
     def test_receitaEditGet(self):
-        response = self.client.get(reverse("edit Receitas", kwargs={"id":1}))
-        assert response.status_code == 404
+        response = self.client.get(reverse("edit Receitas"))
+        assert response.status_code == 200
 
     def test_receitaDelete(self):
         response = self.client.get(reverse("receita delete", kwargs={"id":1}))
