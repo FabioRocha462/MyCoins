@@ -14,8 +14,8 @@ class TestCategoriaDespesas(TestCase):
         assert response.status_code == 200
 
     def test_categoria_despesa_editGet(self):
-        name = "teste editado"
-        response = self.client.get(reverse("edite categoria despesa"),kwargs={"id":1})
+        cd = CategoriaDespesa.objects.create()
+        response = self.client.get(reverse("edite categoria despesa",kwargs={"id":1}))
         assert response.status_code == 200
 
 

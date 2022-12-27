@@ -27,7 +27,7 @@ class TestViews(TestCase):
         assert response.status_code == 404
 
     def test_DespesaEditPost(self): 
-        response = self.client.get(reverse("editDespesa"),{"name":"testeedit"})
+        response = self.client.post(reverse("editDespesa",kwargs={"id":1}),{'tipoDespesa':"1","name":"teste","value":100,'data':datetime.date.today(),'categoria':1})
         assert response.status_code == 200
 
     def test_DespesaDelete(self):
